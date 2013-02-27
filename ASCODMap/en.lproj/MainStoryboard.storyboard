@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="u6s-Qr-sNz">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="MMViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MlB-Ul-rhS">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="155" id="GB1-X8-0CX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZS-yV-MQy">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButton:" destination="2" eventType="touchUpInside" id="0Ba-SQ-fl7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MlB-Ul-rhS" firstAttribute="top" secondItem="3" secondAttribute="top" constant="39" id="7KI-gM-ZnR"/>
+                            <constraint firstItem="dZS-yV-MQy" firstAttribute="centerX" secondItem="MlB-Ul-rhS" secondAttribute="centerX" type="default" id="D9p-zD-eDd"/>
+                            <constraint firstItem="dZS-yV-MQy" firstAttribute="top" secondItem="3" secondAttribute="top" constant="92" id="iTF-WJ-aCM"/>
+                            <constraint firstItem="MlB-Ul-rhS" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="98" id="orU-fd-jqi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="o0V-6M-sdV"/>
+                    <connections>
+                        <outlet property="searchText" destination="MlB-Ul-rhS" id="bm1-Wj-oiR"/>
+                        <segue destination="yvj-id-9pP" kind="push" identifier="tableViewSegue" id="xF7-y5-Y2F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="-164"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="RDi-e8-Npu">
+            <objects>
+                <tableViewController id="yvj-id-9pP" customClass="MMTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="veG-ht-c9g">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Yf8-b8-LUH">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yvj-id-9pP" id="o8X-Vu-G5n"/>
+                            <outlet property="delegate" destination="yvj-id-9pP" id="XWR-uC-xKP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="kEo-RI-rnw"/>
+                    <connections>
+                        <outlet property="tableViewOutlet" destination="veG-ht-c9g" id="EPa-yh-Pg6"/>
+                        <segue destination="IQI-9H-yrr" kind="push" identifier="mapSegue" id="hXb-Yk-bDr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZa-ih-2f3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004" y="-175"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="49V-a7-4Li">
+            <objects>
+                <viewController id="IQI-9H-yrr" customClass="MMMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="17T-5s-QI5">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6aa-Ze-yxs">
+                                <connections>
+                                    <outlet property="delegate" destination="IQI-9H-yrr" id="XS8-Do-1cb"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6aa-Ze-yxs" firstAttribute="bottom" secondItem="17T-5s-QI5" secondAttribute="bottom" type="default" id="7Bs-Qb-UCT"/>
+                            <constraint firstItem="6aa-Ze-yxs" firstAttribute="trailing" secondItem="17T-5s-QI5" secondAttribute="trailing" type="default" id="hd5-OV-tvw"/>
+                            <constraint firstItem="6aa-Ze-yxs" firstAttribute="leading" secondItem="17T-5s-QI5" secondAttribute="leading" type="default" id="ugb-98-baV"/>
+                            <constraint firstItem="6aa-Ze-yxs" firstAttribute="top" secondItem="17T-5s-QI5" secondAttribute="top" type="default" id="ve0-jl-KE3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GkV-Va-iC2"/>
+                    <connections>
+                        <outlet property="mapViewOutlet" destination="6aa-Ze-yxs" id="BgD-nh-O7y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vrE-j5-Rup" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1419" y="-188"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dPL-4x-e9N">
+            <objects>
+                <navigationController id="u6s-Qr-sNz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bg0-Fh-H2f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="Cls-M5-2gF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L2D-wp-TO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128" y="-170"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="MMMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapViewOutlet" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="MMTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableViewOutlet" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MMViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MMViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchButton:"/>
+                <relationship kind="outlet" name="searchText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
