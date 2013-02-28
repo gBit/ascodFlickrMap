@@ -50,7 +50,7 @@
 {
     int maxItems = 20;    
     
-    NSString *flickrCustomURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9752319060f3fd77e514166ab2771c72&tags=%@&has_geo=1&extras=description%%2C+geo%%2C+owner_name&per_page=%d&format=json&nojsoncallback=1", searchText.text, maxItems];
+    NSString *flickrCustomURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9752319060f3fd77e514166ab2771c72&tags=%@&has_geo=1&extras=description%%2Cgeo%%2Cowner_name%%2Curl_m&per_page=%i&page=1&format=json&nojsoncallback=1", searchText.text, maxItems];
     
     NSURL *flickrURL = [NSURL URLWithString:flickrCustomURLString];
     NSURLRequest *flickrRequest = [NSURLRequest requestWithURL:flickrURL];

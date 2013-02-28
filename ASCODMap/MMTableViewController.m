@@ -35,16 +35,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //NSLog(@"In view did load %@", self.photosArray);
-    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
     if([segue.identifier isEqualToString:@"mapSegue"]) {
-        //   pictDict = [photosArray objectAtIndex:[[tableViewOutlet indexPathForSelectedRow] row]];
         MMMapViewController *mvc = [segue destinationViewController];
         mvc.pictDict = pictDict;
         mvc.selectedImage = selectedImage;

@@ -25,9 +25,6 @@
 {
     [super viewDidLoad];
     
-    [self startLocationUpdates];
-    [self startAnnotationUpdates];
-    
     //NSLog(@"%@", pictDict);
     
     //    CLLocationCoordinate2D defaultCoordinate =
@@ -51,6 +48,14 @@
     //
     //    [mapViewOutlet setRegion:defaultRegion];
     //    [mapViewOutlet addAnnotation:myAnnotation];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self startLocationUpdates];
+    [self startAnnotationUpdates];
 }
 
 - (void)didReceiveMemoryWarning

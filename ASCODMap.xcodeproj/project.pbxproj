@@ -22,6 +22,8 @@
 		1A982A8A16DC2007005EAECE /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A982A8916DC2007005EAECE /* MMViewController.m */; };
 		1A982A9216DC2A7B005EAECE /* MMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A982A9116DC2A7B005EAECE /* MMTableViewController.m */; };
 		8F1971A516DFFC3C00CB03BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1971A416DFFC3C00CB03BF /* CoreLocation.framework */; };
+		8F1E043B16E006C100EA55FF /* MMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E043A16E006C100EA55FF /* MMPhoto.m */; };
+		8F1E043E16E010B000EA55FF /* MMFlickrAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E043D16E010B000EA55FF /* MMFlickrAPI.m */; };
 		8F310F7316DD9091001403E6 /* MMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F310F7216DD8ED7001403E6 /* MMMapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,10 @@
 		1A982A9016DC2A7B005EAECE /* MMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableViewController.h; sourceTree = "<group>"; };
 		1A982A9116DC2A7B005EAECE /* MMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableViewController.m; sourceTree = "<group>"; };
 		8F1971A416DFFC3C00CB03BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8F1E043916E006C100EA55FF /* MMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPhoto.h; sourceTree = "<group>"; };
+		8F1E043A16E006C100EA55FF /* MMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPhoto.m; sourceTree = "<group>"; };
+		8F1E043C16E010B000EA55FF /* MMFlickrAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFlickrAPI.h; sourceTree = "<group>"; };
+		8F1E043D16E010B000EA55FF /* MMFlickrAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFlickrAPI.m; sourceTree = "<group>"; };
 		8F310F7116DD8ED7001403E6 /* MMMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMapViewController.h; sourceTree = "<group>"; };
 		8F310F7216DD8ED7001403E6 /* MMMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +115,10 @@
 				1A982A8916DC2007005EAECE /* MMViewController.m */,
 				8F310F7116DD8ED7001403E6 /* MMMapViewController.h */,
 				8F310F7216DD8ED7001403E6 /* MMMapViewController.m */,
+				8F1E043C16E010B000EA55FF /* MMFlickrAPI.h */,
+				8F1E043D16E010B000EA55FF /* MMFlickrAPI.m */,
+				8F1E043916E006C100EA55FF /* MMPhoto.h */,
+				8F1E043A16E006C100EA55FF /* MMPhoto.m */,
 				1A726C6916DC979800772B82 /* MMAnnotation.h */,
 				1A726C6A16DC979800772B82 /* MMAnnotation.m */,
 				1A982A7416DC2007005EAECE /* Supporting Files */,
@@ -203,6 +213,8 @@
 				1A982A8A16DC2007005EAECE /* MMViewController.m in Sources */,
 				1A982A9216DC2A7B005EAECE /* MMTableViewController.m in Sources */,
 				1A726C6B16DC979800772B82 /* MMAnnotation.m in Sources */,
+				8F1E043B16E006C100EA55FF /* MMPhoto.m in Sources */,
+				8F1E043E16E010B000EA55FF /* MMFlickrAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
