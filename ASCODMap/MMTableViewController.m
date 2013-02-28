@@ -14,6 +14,7 @@
     
     __weak IBOutlet UITableView *tableViewOutlet;
     NSDictionary *pictDict;
+    UIImage *selectedImage;
 }
 @end
 
@@ -36,16 +37,17 @@
     [super viewDidLoad];
     
     //NSLog(@"In view did load %@", self.photosArray);
-
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
     if([segue.identifier isEqualToString:@"mapSegue"]) {
- //   pictDict = [photosArray objectAtIndex:[[tableViewOutlet indexPathForSelectedRow] row]];
-    MMMapViewController *mvc = [segue destinationViewController];
-    mvc.pictDict = pictDict;
+        //   pictDict = [photosArray objectAtIndex:[[tableViewOutlet indexPathForSelectedRow] row]];
+        MMMapViewController *mvc = [segue destinationViewController];
+        mvc.pictDict = pictDict;
+        mvc.selectedImage = selectedImage;
     }
 }
 
@@ -65,7 +67,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     
     // Return the number of rows in the section.
     return photosArray.count;
@@ -79,7 +81,8 @@
     // Configure the cell...
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        
     }
     
     NSDictionary *photoDict = [photosArray objectAtIndex:indexPath.row];
@@ -88,17 +91,20 @@
     NSString *idString = [photoDict valueForKey:@"id"];
     NSString *secretString = [photoDict valueForKey:@"secret"];
     
-    NSString *flickrURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_m.jpg", farmString, serverString, idString, secretString];
+    NSString *flickrURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_q.jpg", farmString, serverString, idString, secretString];
     
-   // NSLog(@"%@", flickrURLString);
+    // NSLog(@"%@", flickrURLString);
     
     NSURL *flickrURL = [NSURL URLWithString:flickrURLString];
     NSData *flickrData = [NSData dataWithContentsOfURL:flickrURL];
     UIImage *myImage = [UIImage imageWithData:flickrData];
     
     cell.imageView.image = myImage;
+    cell.textLabel.text = [photoDict valueForKey:@"ownername"];
+    cell.detailTextLabel.text = [photoDict valueForKey:@"title"];
+    cell.textLabel.textColor = [UIColor blueColor];
     
-   // http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_m.jpg
+    // http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_m.jpg
     
     return cell;
 }
@@ -109,6 +115,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     pictDict = [photosArray objectAtIndex:indexPath.row];
+    
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    selectedImage = selectedCell.imageView.image;
+    
     [self performSegueWithIdentifier:@"mapSegue" sender:self];
     
 }

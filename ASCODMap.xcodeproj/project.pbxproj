@@ -21,6 +21,7 @@
 		1A982A8716DC2007005EAECE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A982A8516DC2007005EAECE /* MainStoryboard.storyboard */; };
 		1A982A8A16DC2007005EAECE /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A982A8916DC2007005EAECE /* MMViewController.m */; };
 		1A982A9216DC2A7B005EAECE /* MMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A982A9116DC2A7B005EAECE /* MMTableViewController.m */; };
+		8F1971A516DFFC3C00CB03BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1971A416DFFC3C00CB03BF /* CoreLocation.framework */; };
 		8F310F7316DD9091001403E6 /* MMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F310F7216DD8ED7001403E6 /* MMMapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		1A982A8916DC2007005EAECE /* MMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
 		1A982A9016DC2A7B005EAECE /* MMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableViewController.h; sourceTree = "<group>"; };
 		1A982A9116DC2A7B005EAECE /* MMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableViewController.m; sourceTree = "<group>"; };
+		8F1971A416DFFC3C00CB03BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8F310F7116DD8ED7001403E6 /* MMMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMapViewController.h; sourceTree = "<group>"; };
 		8F310F7216DD8ED7001403E6 /* MMMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F1971A516DFFC3C00CB03BF /* CoreLocation.framework in Frameworks */,
 				1A726C6816DC8E7E00772B82 /* MapKit.framework in Frameworks */,
 				1A982A6E16DC2007005EAECE /* UIKit.framework in Frameworks */,
 				1A982A7016DC2007005EAECE /* Foundation.framework in Frameworks */,
@@ -85,6 +88,7 @@
 		1A982A6C16DC2007005EAECE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F1971A416DFFC3C00CB03BF /* CoreLocation.framework */,
 				1A726C6716DC8E7E00772B82 /* MapKit.framework */,
 				1A982A6D16DC2007005EAECE /* UIKit.framework */,
 				1A982A6F16DC2007005EAECE /* Foundation.framework */,

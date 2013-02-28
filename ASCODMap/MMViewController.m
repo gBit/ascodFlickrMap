@@ -13,7 +13,6 @@
 {
     NSDictionary *resultsAsDictionary;
     NSMutableArray *photosArray;
-    NSMutableArray *photos;
     __weak IBOutlet UITextField *searchText;
 }
 
@@ -27,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    photos = [[NSMutableArray alloc] init];
+    photosArray = [[NSMutableArray alloc] init];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -37,17 +36,7 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     MMTableViewController *tvc = [segue destinationViewController];
-    
-    // return 20 items max
-        for(int i=0; i < 20; i++)
-         {
-             if (i >= photosArray.count)
-                 break;
-             
-             [photos insertObject:[photosArray objectAtIndex:i] atIndex:i];
-        }
-
-    tvc.photosArray = photos;
+    tvc.photosArray = photosArray;
 }
 
 
@@ -59,10 +48,9 @@
 
 - (IBAction)searchButton:(id)sender
 {
-    double radius = 5.0;
-   
+    int maxItems = 20;    
     
-    NSString *flickrCustomURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9752319060f3fd77e514166ab2771c72&tags=%@&format=json&nojsoncallback=1&lat=41.894032&lon=-87.634742&radius=%f", searchText.text, radius];
+    NSString *flickrCustomURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9752319060f3fd77e514166ab2771c72&tags=%@&has_geo=1&extras=description%%2C+geo%%2C+owner_name&per_page=%d&format=json&nojsoncallback=1", searchText.text, maxItems];
     
     NSURL *flickrURL = [NSURL URLWithString:flickrCustomURLString];
     NSURLRequest *flickrRequest = [NSURLRequest requestWithURL:flickrURL];
@@ -85,9 +73,7 @@
                                    resultsAsDictionary = (NSDictionary *) genericResults;
                                    
                                    photosArray = [[resultsAsDictionary valueForKey:@"photos"] valueForKey:@"photo"];
-                                   
-                                 //  NSLog(@"%@", photosArray);
-                                   
+                                                                      
                                    [self performSegueWithIdentifier:@"tableViewSegue" sender:self];
                                    
                                }

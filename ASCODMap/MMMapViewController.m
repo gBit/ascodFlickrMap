@@ -8,64 +8,135 @@
 
 #import "MMMapViewController.h"
 #import <MapKit/MapKit.h>
-#import "MMAnnotation.h"   
+#import "MMAnnotation.h"
 
 @interface MMMapViewController ()
 {
-    
     __weak IBOutlet MKMapView *mapViewOutlet;
-    
+    MMAnnotation *myAnnotation;
 }
 
 @end
 
 @implementation MMMapViewController
-@synthesize pictDict;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize pictDict, selectedImage;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    NSLog(@"%@", pictDict);
-  
-    CLLocationCoordinate2D mmCoordinate = {.latitude = 41.894032,.longitude = -87.634742};
+    [self startLocationUpdates];
+    [self startAnnotationUpdates];
     
-    MKCoordinateSpan span =
+    //NSLog(@"%@", pictDict);
+    
+    //    CLLocationCoordinate2D defaultCoordinate =
+    //    {
+    //        .latitude = 41.894032,
+    //        .longitude = -87.634742
+    //    };
+    //
+    //    MKCoordinateSpan defaultSpan =
+    //    {
+    //        .latitudeDelta = 0.002f,
+    //        .longitudeDelta = 0.002f
+    //    };
+    //
+    //    MKCoordinateRegion defaultRegion = {defaultCoordinate, defaultSpan};
+    //
+    //    myAnnotation = [[MMAnnotation alloc] init];
+    //    myAnnotation.title = @"MobileMakers";
+    //    myAnnotation.subtitle = @"I am here!";
+    //    myAnnotation.coordinate = defaultCoordinate;
+    //
+    //    [mapViewOutlet setRegion:defaultRegion];
+    //    [mapViewOutlet addAnnotation:myAnnotation];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Delegate Protocols
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+		   fromLocation:(CLLocation *)oldLocation
+{
+    [self updatePhotoCoordinates:newLocation.coordinate];
+    [self updateMapViewWithNewCenter:newLocation.coordinate];
+}
+
+
+#pragma mark - Location Methods
+
+- (void)startLocationUpdates
+{
+    if (locationManager == nil)
     {
-        .latitudeDelta = 0.002f,  //0.00001
-        .longitudeDelta = 0.002f
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    
+    locationManager.delegate = self;
+    
+    [locationManager startUpdatingLocation];
+    
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+}
+
+- (void)updatePhotoCoordinates:(CLLocationCoordinate2D)newCoordinate
+{
+    myAnnotation.coordinate = newCoordinate;
+}
+
+- (void)updateMapViewWithNewCenter:(CLLocationCoordinate2D)newCoordinate
+{
+    MKCoordinateRegion newRegion = {newCoordinate, mapViewOutlet.region.span};
+    [mapViewOutlet setRegion:newRegion];
+}
+
+
+#pragma mark - Annotation/Detail Methods
+
+- (void)startAnnotationUpdates
+{
+    if (myAnnotation == nil)
+    {
+        myAnnotation = [[MMAnnotation alloc] init];
+    }
+    
+    myAnnotation.title = [pictDict valueForKey:@"ownername"];
+    myAnnotation.subtitle = [pictDict valueForKey:@"title"];
+    
+    
+    float photoLat = [[pictDict valueForKey:@"latitude"] floatValue];
+    float photoLong = [[pictDict valueForKey:@"longitude"] floatValue];
+    
+    CLLocationCoordinate2D photoCoordinate =
+    {
+        .latitude = photoLat,
+        .longitude = photoLong
     };
     
-    MKCoordinateRegion myRegion = {mmCoordinate, span};
+    MKCoordinateSpan defaultSpan =
+    {
+        .latitudeDelta = 0.5f,
+        .longitudeDelta = 0.5f
+    };
     
-    MMAnnotation *myAnnotation = [[MMAnnotation alloc] init];
-    myAnnotation.title = @"MobileMakers";
-    myAnnotation.subtitle = @"I am here!";
-    myAnnotation.coordinate = mmCoordinate;
+    MKCoordinateRegion photoRegion = {photoCoordinate, defaultSpan};
     
-    [mapViewOutlet setRegion:myRegion];
+    myAnnotation.coordinate = photoCoordinate;
+    
+    [mapViewOutlet setRegion:photoRegion];
     [mapViewOutlet addAnnotation:myAnnotation];
+    
 }
 
-
--(void) showDetails
-{
-    //new view controller etc...
-    NSLog(@"ASCOD Rules!");
-}
-
-
--(MKAnnotationView *) mapView:(MKMapView *) mapView
-            viewForAnnotation:(id<MKAnnotation>)annotation
+- (MKAnnotationView *) mapView:(MKMapView *) mapView
+             viewForAnnotation:(id<MKAnnotation>)annotation
 {
     UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
@@ -80,33 +151,16 @@
                      action:@selector(showDetails)
            forControlEvents:UIControlEventTouchUpInside];
     
-    
-    NSString *farmString = [pictDict valueForKey:@"farm"];
-    NSString *serverString = [pictDict valueForKey:@"server"];
-    NSString *idString = [pictDict valueForKey:@"id"];
-    NSString *secretString = [pictDict valueForKey:@"secret"];
-    
-    NSString *flickrURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_s.jpg", farmString, serverString, idString, secretString];
-    
-    // NSLog(@"%@", flickrURLString);
-    
-    NSURL *flickrURL = [NSURL URLWithString:flickrURLString];
-    NSData *flickrData = [NSData dataWithContentsOfURL:flickrURL];
-    UIImage *myImage = [UIImage imageWithData:flickrData];// Do any additional setup after loading the view.
-    
     annotationView.canShowCallout = YES;
-    annotationView.image = myImage;
+    annotationView.image = selectedImage;
     annotationView.rightCalloutAccessoryView = detailButton;
     
     return annotationView;
 }
 
-
-
-- (void)didReceiveMemoryWarning
+-(void) showDetails
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"%@", [pictDict valueForKey:@"description"]);
 }
 
 @end
